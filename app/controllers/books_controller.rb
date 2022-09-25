@@ -6,9 +6,17 @@ class BooksController < ApplicationController
   def create
     @new_book = Book.new(book_params)
     @new_book.user_id = current_user.id
-    @new_book.save
+    @user = @new_book.user
+    
+    if @new_book.save
+      flash[:notice] = "You have created book successfully."
 
-    redirect_to book_path(@new_book.id)
+      redirect_to book_path(@new_book.id)
+
+    else
+      @books = Book.all
+      render :index
+    end
   end
 
   def index
@@ -42,7 +50,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.permit(:title, :body)
   end
 
 end
