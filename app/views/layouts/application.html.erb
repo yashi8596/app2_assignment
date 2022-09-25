@@ -3,44 +3,88 @@
   <head>
     <title>Bookers2</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
+      <nav class="navbar navbar-expand-lg navbar-dark text-white bg-dark">
 
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "Home", user_path(current_user.id) %>
-        </li>
-        <li>
-          <%= link_to "Users", users_path %>
-        </li>
-        <li>
-          <%= link_to "Books", books_path %>
-        </li>
-        <li>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "Home", root_path %>
-        </li>
-        <li>
-          <%= link_to "About", new_user_password_path %>
-        </li>
-        <li>
-          <%= link_to "Sign up", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "Log in", new_user_session_path %>
-        </li>
-      <% end %>
+        <div class="container">
+          <span><%= link_to "Bookers", root_path %></span>
+
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+            <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to "Home", user_path(current_user.id) %>
+              </li>
+              <li>
+                <%= link_to "Users", users_path %>
+              </li>
+              <li>
+                <%= link_to "Books", books_path %>
+              </li>
+              <li>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to "Home", root_path %>
+              </li>
+              <li>
+                <%= link_to "About", homes_about_path %>
+              </li>
+              <li>
+                <%= link_to "Sign up", new_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to "Log in", new_user_session_path %>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
     </header>
-    <%= yield %>
+
+    <main>
+      <% if flash[:notice] %>
+
+      <div class="alert alert-info">
+        <%= flash[:notice] %>
+      </div>
+
+      <% end %>
+      <% if flash[:alert] %>
+
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+
+      <% end %>
+      <%= yield %>
+    </main>
+
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
   </body>
 </html>
