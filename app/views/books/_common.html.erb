@@ -1,51 +1,52 @@
-      <div>
-        <h2>User info</h2>
-        <p><%= image_tag user.get_profile_image(100, 100) %></p>
+  <div class="userinfo">
+    <h2>User info</h2>
+    <p><%= image_tag user.get_profile_image(100, 100) %></p>
 
-        <table>
-          <tbody>
-            <tr>
-              <th>name</th>
-              <th><%= user.name %></th>
-            </tr>
+    <table>
+      <tbody>
+        <tr>
+          <th>name</th>
+          <th><%= user.name %></th>
+        </tr>
 
-            <tr>
-              <th>introduction</th>
-              <th><%= user.introduction %></th>
-            </tr>
+        <tr>
+          <th>introduction</th>
+          <th><%= user.introduction %></th>
+        </tr>
 
+      </tbody>
+    </table>
+  </div>
 
+  <div class="edit">
+      <% if user == current_user %>
 
-          </tbody>
-        </table>
+        <%= link_to edit_user_path(user) do %>
 
-        <div class="row">
-          <% if user == current_user %>
+          <button type="button" class="btn btn-outline-secondary"><i class="fa-solid fa-user-gear"></i></button>
 
-            <%= link_to edit_user_path(user) do %>
-
-              <button type="button" class="btn btn-outline-secondary"><i class="fa-solid fa-user-gear"></i></button>
-
-            <% end %>
-
-          <% end %>
-        </div>
-
-
-
-
-        <h2>New book</h2>
-
-        <%= form_with model: new_book, url: books_path, method: :post do |f| %>
-
-          <label>Title</label><br>
-          <p><%= f.text_field :title %></p>
-
-          <label>Opinion</label><br>
-          <p><%= f.text_area :body %></p>
-
-          <p><%= f.submit 'Create Book' %></p>
         <% end %>
 
-      </div>
+      <% end %>
+  </div>
+
+
+
+  <div>
+    <h2>New book</h2>
+
+    <%= form_with model: new_book, url: books_path, method: :post do |f| %>
+
+      <label>Title</label><br>
+      <p><%= f.text_field :title %></p>
+
+      <label>Opinion</label><br>
+      <p><%= f.text_area :body %></p>
+
+      <p><%= f.submit 'Create Book' %></p>
+    <% end %>
+  </div>
+
+
+
 
