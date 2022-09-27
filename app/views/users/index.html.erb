@@ -1,9 +1,13 @@
-<div>
+<div class="container">
+  <div class="col-md-3">
 
-<%= render partial: 'books/common', locals: { user: @user, new_book: @new_book } %>
+    <%= render partial: 'books/common', locals: { user: @user, new_book: @new_book } %>
+
+  </div>
 
 
-  <div class="row">
+
+  <div class="col-md-8">
 
     <h2>Users</h2>
 
