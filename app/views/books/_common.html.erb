@@ -38,8 +38,17 @@
     <%= form_with model: @new_book, url: books_path, method: :post do |f| %>
 
       <div class="title">
-        <label>title</label><br>
-        <p class="col-xl-12"><%= f.text_field :title %></p>
+        <label>Title</label><br>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+
+      <div class="opinion">
+        <label>Opinion</label><br>
+        <%= f.text_area :body, class: "form-control" %>
+      </div>
+
+      <div class="submit">
+        <%= f.submit "Create Book", class: "btn btn-success" %>
       </div>
 
     <% end %>
