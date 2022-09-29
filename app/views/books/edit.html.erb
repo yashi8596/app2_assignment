@@ -3,12 +3,12 @@
 <%= form_with model: @book, url: book_path(@book.id), method: :patch do |f| %>
 
  <label>Title</label><br>
-    <p><%= f.text_field :title %></p>
+    <p><%= f.text_field :title, class: "form-control" %></p>
 
   <label>Opinion</label><br>
-    <p><%= f.text_area :body %></p>
+    <p><%= f.text_area :body, class: "form-control" %></p>
 
-  <p><%= f.submit 'Update Book' %></p>
+  <p><%= f.submit 'Update Book', class: "btn btn-success" %></p>
 <% end %>
 
 <div><%= link_to 'Show', book_path(@book.id) %> | <%= link_to 'Back', books_path %></div>
