@@ -18,7 +18,9 @@
       <nav class="navbar navbar-expand-lg navbar-dark text-white bg-dark">
 
         <div class="container">
-          <span><%= link_to "Bookers", root_path %></span>
+          <%= link_to root_path, class:"navbar-brand" do %>
+            <span>Bookers</span>
+          <% end %>
 
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
@@ -74,20 +76,24 @@
     </header>
 
     <main>
-      <% if flash[:notice] %>
+      <p>
+        <% if flash[:notice] %>
 
-      <div class="alert alert-info">
-        <%= flash[:notice] %>
-      </div>
+          <div class="alert alert-info">
+            <%= flash[:notice] %>
+          </div>
 
-      <% end %>
-      <% if flash[:alert] %>
+        <% end %>
 
-      <div class="alert alert-danger">
-        <%= flash[:alert] %>
-      </div>
+        <% if flash[:alert] %>
 
-      <% end %>
+          <div class="alert alert-danger">
+            <%= flash[:alert] %>
+          </div>
+
+        <% end %>
+      </p>
+
       <%= yield %>
     </main>
 
